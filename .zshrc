@@ -10,6 +10,8 @@ fi
 
 export EDITOR=vim
 
+$(brew --prefix)/opt/fzf/install
+
 source ~/antigen.zsh
 
 # Load the oh-my-zsh library
