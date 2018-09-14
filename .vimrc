@@ -117,7 +117,7 @@ let g:syntastic_mode_map = {
 
 "" Open NERDTree if no files were specified when vim was executed
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree<Bar><C-w>p | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "" Shortcut for toggling NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
