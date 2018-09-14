@@ -8,6 +8,8 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 for bashrc in $(find ${HOME}/etc/bashrc.d/ -name "*.bashrc" -type f); do
   source ${bashrc};
 done
