@@ -7,10 +7,13 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'mhinz/vim-signify'
+Plugin 'ntpeters/vim-better-whitespace'
 
 call vundle#end()
 filetype plugin indent on
@@ -116,3 +119,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "" Shortcut for toggling NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
