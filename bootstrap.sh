@@ -37,6 +37,7 @@ function installDotFiles() {
 }
 
 function updateVim() {
+	nvim +PluginInstall +qall
 	vim +PluginInstall +qall
 }
 
