@@ -16,9 +16,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'mhinz/vim-signify'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'junegunn/fzf.vim'
-" Plugin 'Rip-Rip/clang_complete'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-scripts/a.vim'
+" Plugin 'vim-airline/vim-airline'
 Plugin 'Shougo/deoplete.nvim'
 
 if !has('vim')

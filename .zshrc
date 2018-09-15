@@ -8,7 +8,7 @@ if [ -f /etc/zshrc ]; then
 	. /etc/zshrc
 fi
 
-export EDITOR=vim
+export EDITOR=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
