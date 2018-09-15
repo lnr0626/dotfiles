@@ -16,7 +16,17 @@ Plugin 'tpope/vim-surround'
 Plugin 'mhinz/vim-signify'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'junegunn/fzf.vim'
+" Plugin 'Rip-Rip/clang_complete'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-scripts/a.vim'
+Plugin 'Shougo/deoplete.nvim'
 
+if !has('vim')
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plugin 'zchee/deoplete-clang'
 call vundle#end()
 filetype plugin indent on
 
