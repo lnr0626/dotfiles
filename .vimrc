@@ -139,3 +139,7 @@ let g:strip_whitespace_on_save=1
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 noremap <C-o> :Files<CR>
 
+"" completion
+let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+let g:deoplete#sources#clang#clang_header="/Library/Developer/CommandLineTools/usr/lib/clang"
+let g:deoplete#enable_at_startup = 1
