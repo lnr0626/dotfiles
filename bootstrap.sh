@@ -37,8 +37,12 @@ function installDotFiles() {
 }
 
 function updateVim() {
-	nvim +PluginInstall +qall
-	vim +PluginInstall +qall
+  if command -v nvim; then
+	  nvim +PluginInstall +qall
+  fi
+  if command -v vim; then
+	  vim +PluginInstall +qall
+  fi
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

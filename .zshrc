@@ -19,12 +19,22 @@ source ~/antigen.zsh
 antigen use oh-my-zsh
 
 antigen bundle git
-antigen bundle brew
-antigen bundle kubectl
+if command -v brew; then
+  antigen bundle brew
+fi
+if command -v kubectl; then
+  antigen bundle kubectl
+fi
 antigen bundle zsh_reload
-antigen bundle osx
-antigen bundle helm
-antigen bundle aws
+if [ "$(uname)" == "Darwin" ]; then
+  antigen bundle osx
+fi
+if command -v helm; then
+  antigen bundle helm
+fi
+if command -v aws; then
+  antigen bundle aws
+fi
 antigen bundle ssh-agent
 antigen bundle vi-mode
 
