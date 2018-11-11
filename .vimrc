@@ -17,9 +17,11 @@ Plugin 'mhinz/vim-signify'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'junegunn/fzf.vim'
 Plugin 'vim-airline/vim-airline'
-Plugin 'Shougo/deoplete.nvim'
 
-if !has('vim')
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
   Plugin 'roxma/nvim-yarp'
   Plugin 'roxma/vim-hug-neovim-rpc'
 endif
