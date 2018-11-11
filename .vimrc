@@ -18,6 +18,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'junegunn/fzf.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-rooter'
+Plugin 'editorconfig/editorconfig-vim'
 
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -148,4 +149,6 @@ let g:deoplete#enable_at_startup = 1
 "" airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
