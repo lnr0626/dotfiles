@@ -17,6 +17,7 @@ Plugin 'mhinz/vim-signify'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'junegunn/fzf.vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'airblade/vim-rooter'
 
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
