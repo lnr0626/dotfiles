@@ -16,9 +16,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'mhinz/vim-signify'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'junegunn/fzf.vim'
-Plugin 'vim-airline/vim-airline'
+"" Plugin 'vim-airline/vim-airline'
+Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-rooter'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'dracula/vim'
 
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -99,7 +101,7 @@ syntax on
 set cursorline
 set background=dark
 " let g:solarized_termcolors=256
-colorscheme torte
+colorscheme dracula
 highlight clear SignColumn
 
 " " Scrolling
@@ -147,8 +149,30 @@ let g:deoplete#sources#clang#clang_header="/Library/Developer/CommandLineTools/u
 let g:deoplete#enable_at_startup = 1
 
 "" airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+"" let g:airline#extensions#tabline#enabled = 1
+"" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+let g:lightline = {
+  \   'colorscheme': 'Dracula',
+  \   'active': {
+  \     'left':[ [ 'mode', 'paste' ],
+  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+  \     ]
+  \   },
+	\   'component': {
+	\     'lineinfo': ' %3l:%-2v',
+	\   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#head',
+  \   }
+  \ }
+
+let g:lightline.tabline = {
+  \   'left': [ ['tabs'] ],
+  \   'right': [ ['close'] ]
+  \ }
+set showtabline=2  " Show tabline
+set guioptions-=e  " Don't use GUI tabline
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
