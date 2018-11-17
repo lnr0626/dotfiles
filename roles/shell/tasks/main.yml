@@ -31,7 +31,20 @@
   copy:
     src: "{{ item }}"
     dest: "~/{{ item }}"
+    mode: '0744'
   loop:
     - .bashrc
     - .zshrc
     - .bash_profile
+    - antigen.zsh
+
+- name: create host override file
+  file:
+    path: ~/etc/bashrc.d/999-host.bashrc
+    state: touch
+    
+- name: create host override file
+  file:
+    path: ~/etc/zshrc.d/999-host.zshrc
+    state: touch
+    
