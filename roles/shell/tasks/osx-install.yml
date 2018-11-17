@@ -1,4 +1,12 @@
-- name: install zsh
+- name: install zsh+utilities
   homebrew:
-    name: zsh
+    name: 
+      - ag
+      - bat
+      - fzf
+      - jq
+      - gradle
+      - python3
+      - wget
+      - zsh
     state: present

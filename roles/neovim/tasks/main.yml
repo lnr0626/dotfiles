@@ -17,3 +17,6 @@
     dest: ~/.vim/bundle/Vundle.vim
     clone: yes
     update: yes
+
+- name: install plugins
+  command: nvim +PluginClean! +PluginInstall +UpdateRemotePlugins +qall

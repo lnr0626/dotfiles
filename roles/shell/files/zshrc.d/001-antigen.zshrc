@@ -35,14 +35,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen bundle zsh-users/zsh-history-substring-search # load after zsh-syntax-highlighting
-
 antigen theme robbyrussell
 
 antigen apply
-
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1

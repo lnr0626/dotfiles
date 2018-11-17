@@ -1,6 +1,10 @@
-- name: install zsh
+- name: install zsh+utilities
   dnf:
-    name: zsh
+    name: 
+      - fzf
+      - jq
+      - the_silver_searcher
+      - zsh
     state: present
   become: yes
   become_user: root
