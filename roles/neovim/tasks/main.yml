@@ -1,0 +1,19 @@
+- include: osx-install.yml
+  when: ansible_distribution == "MacOSX"
+
+- include: fedora-install.yml
+  when: ansible_distribution == "Fedora"
+
+- name: synchronize vim configs
+  synchronize:
+    src: ../files/
+    dest: ~/
+    archive: yes
+    perms: no
+
+- name: install vundle
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: ~/.vim/bundle/Vundle.vim
+    clone: yes
+    update: yes

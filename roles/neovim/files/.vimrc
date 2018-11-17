@@ -16,7 +16,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'mhinz/vim-signify'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'junegunn/fzf.vim'
-"" Plugin 'vim-airline/vim-airline'
 Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-rooter'
 Plugin 'editorconfig/editorconfig-vim'
@@ -130,8 +129,8 @@ let g:syntastic_mode_map = {
 " NERDTree
 
 "" Open NERDTree if no files were specified when vim was executed
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "" Shortcut for toggling NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
@@ -148,10 +147,6 @@ let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/
 let g:deoplete#sources#clang#clang_header="/Library/Developer/CommandLineTools/usr/lib/clang"
 let g:deoplete#enable_at_startup = 1
 
-"" airline
-"" let g:airline#extensions#tabline#enabled = 1
-"" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
 let g:lightline = {
   \   'colorscheme': 'Dracula',
   \   'active': {
@@ -159,9 +154,6 @@ let g:lightline = {
   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
   \     ]
   \   },
-	\   'component': {
-	\     'lineinfo': ' %3l:%-2v',
-	\   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#head',
   \   }

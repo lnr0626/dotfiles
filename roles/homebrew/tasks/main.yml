@@ -1,2 +1,0 @@
-- name: test
-  debug: msg="this is {{ ansible_hostname }}"

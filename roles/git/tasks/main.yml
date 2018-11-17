@@ -1,0 +1,7 @@
+- name: setup gitconfig
+  copy:
+    src: .gitconfig
+    dest: ~/.gitconfig
+    user: '{{ ansible_user_id }}'
+    group: '{{ ansible_user_id }}'
+    mode: '0644'

@@ -1,0 +1,37 @@
+- include: osx-install.yml
+  when: ansible_distribution == "MacOSX"
+
+- include: fedora-install.yml
+  when: ansible_distribution == "Fedora"
+
+- name: create config dirs
+  file:
+    state: directory
+    path: "~/{{ item }}"
+  loop:
+    - etc
+    - etc/bashrc.d
+    - etc/zshrc.d
+
+- name: synchronize bashrc files
+  synchronize:
+    src: ../files/bashrc.d
+    dest: ~/etc/
+    archive: yes
+    perms: no
+
+- name: synchronize zshrc files
+  synchronize:
+    src: ../files/zshrc.d
+    dest: ~/etc/
+    archive: yes
+    perms: no
+
+- name: copy base rc files
+  copy:
+    src: "{{ item }}"
+    dest: "~/{{ item }}"
+  loop:
+    - .bashrc
+    - .zshrc
+    - .bash_profile
