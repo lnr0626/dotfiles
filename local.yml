@@ -1,0 +1,5 @@
+---
+- hosts: laptops
+  roles:
+    - { role: homebrew, when: ansible_distribution == "MacOSX" }
+    - neovim
