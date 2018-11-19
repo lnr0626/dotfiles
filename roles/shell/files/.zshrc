@@ -8,6 +8,6 @@ if [ -f /etc/zshrc ]; then
 	. /etc/zshrc
 fi
 
-for rc in $(find ${HOME}/etc/zshrc.d/ -name "*.zshrc" -type f); do
+for rc in $(find ${HOME}/etc/zshrc.d/ -name "*.zshrc" -type f | sort); do
   source ${rc};
 done

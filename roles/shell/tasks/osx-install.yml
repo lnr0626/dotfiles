@@ -1,9 +1,8 @@
 - name: install zsh+utilities
   homebrew:
-    name: 
+    name:
       - ag
       - bat
-      - fzf
       - jq
       - gradle
       - python3

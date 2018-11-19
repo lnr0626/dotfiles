@@ -10,7 +10,7 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-for bashrc in $(find ${HOME}/etc/bashrc.d/ -name "*.bashrc" -type f); do
+for bashrc in $(find ${HOME}/etc/bashrc.d/ -name "*.bashrc" -type f | sort); do
   source ${bashrc};
 done
 

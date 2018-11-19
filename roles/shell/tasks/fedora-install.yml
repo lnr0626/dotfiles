@@ -1,7 +1,6 @@
 - name: install zsh+utilities
   dnf:
-    name: 
-      - fzf
+    name:
       - jq
       - the_silver_searcher
       - zsh
@@ -9,3 +8,4 @@
   become: yes
   become_user: root
   become_method: sudo
+

@@ -31,10 +31,9 @@ fi
 antigen bundle ssh-agent
 antigen bundle vi-mode
 
-antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen theme robbyrussell
+antigen bundle dracula/zsh
+antigen theme https://github.com/dracula/zsh.git dracula
 
 antigen apply

@@ -4,6 +4,8 @@
 - include: fedora-install.yml
   when: ansible_distribution == "Fedora"
 
+- include: install-fzf.yml
+
 - name: create config dirs
   file:
     state: directory

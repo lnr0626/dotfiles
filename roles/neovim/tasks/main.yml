@@ -18,5 +18,9 @@
     clone: yes
     update: yes
 
-- name: install plugins
+- name: install nvim plugins
   command: nvim +PluginClean! +PluginInstall +UpdateRemotePlugins +qall
+
+- name: install vim plugins
+  command: vim +PluginClean! +PluginInstall +UpdateRemotePlugins +qall
+
