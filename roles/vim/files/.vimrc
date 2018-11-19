@@ -21,15 +21,6 @@ Plugin 'airblade/vim-rooter'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'dracula/vim'
 
-if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
-endif
-
-Plugin 'zchee/deoplete-clang'
 call vundle#end()
 filetype plugin indent on
 
@@ -140,12 +131,8 @@ let g:strip_whitespace_on_save=1
 
 "" FZF config
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
-noremap <C-o> :Files<CR>
-
-"" completion
-let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
-let g:deoplete#sources#clang#clang_header="/Library/Developer/CommandLineTools/usr/lib/clang"
-let g:deoplete#enable_at_startup = 1
+let l:fzf_files_options = '--preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'"'
+noremap <C-o> :Files()<CR>
 
 let g:lightline = {
   \   'colorscheme': 'Dracula',
