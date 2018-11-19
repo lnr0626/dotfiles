@@ -131,8 +131,31 @@ let g:strip_whitespace_on_save=1
 
 "" FZF config
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
-let l:fzf_files_options = '--preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'"'
-noremap <C-o> :Files()<CR>
+noremap <C-o> :call Fzf_dev()<CR>
+
+" Files
+function! Fzf_dev()
+  let l:fzf_files_options = '--preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {} | head -'.&lines.'"'
+
+  function! s:files()
+    return split(system($FZF_DEFAULT_COMMAND), '\n')
+  endfunction
+
+  function! s:edit_file(item)
+    execute 'silent e' a:item
+  endfunction
+
+  call fzf#run({
+        \ 'source': <sid>files(),
+        \ 'sink':   function('s:edit_file'),
+        \ 'options': '-m ' . l:fzf_files_options,
+        \ 'down':    '40%' })
+endfunction
+
+"" completion
+let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+let g:deoplete#sources#clang#clang_header="/Library/Developer/CommandLineTools/usr/lib/clang"
+let g:deoplete#enable_at_startup = 1
 
 let g:lightline = {
   \   'colorscheme': 'Dracula',
