@@ -4,8 +4,6 @@
 - include: fedora-install.yml
   when: ansible_distribution == "Fedora"
 
-- 
-
 - name: synchronize vim configs
   synchronize:
     src: ../files/

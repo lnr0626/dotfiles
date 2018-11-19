@@ -1,2 +1,3 @@
 - create bootstrap script for installing ansible (and homebrew on osx)
 - add variables
+- install python3/pip3
