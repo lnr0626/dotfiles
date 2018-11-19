@@ -1,0 +1,4 @@
+install_neovim: true
+simlink_neovim_to_vim: true
+install_vim: false
+

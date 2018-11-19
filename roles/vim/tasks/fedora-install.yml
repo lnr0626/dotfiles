@@ -1,0 +1,18 @@
+- name: install neovim
+  dnf:
+    name: neovim
+    state: present
+  become: yes
+  become_user: root
+  become_method: sudo
+  when: install_neovim
+
+- name: install vim
+  dnf:
+    name: vim
+    state: present
+  become: yes
+  become_user: root
+  become_method: sudo
+  when: install_vim
+

@@ -1,0 +1,12 @@
+- name: install neovim
+  homebrew:
+    name: neovim
+    state: present
+  when: install_neovim
+
+- name: install vim
+  homebrew:
+    name: vim
+    state: present
+  when: install_vim
+
