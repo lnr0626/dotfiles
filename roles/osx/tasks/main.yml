@@ -1,0 +1,213 @@
+- name: kill open system preferences dialogs
+  command: osascript -e 'tell application "System Preferences" to quit'
+
+- name: disable sound effects on boot
+  command: nvram SystemAudioVolume=" "
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: set sidebar icon size to medium
+  command: defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
+- name: disable focus ring animation
+  command: defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
+
+- name: increase window resize speed for cocoa apps
+  command: defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
+- name: expand panels by default
+  command: defaults write NSGlobalDomain {{ item }} -bool true
+  loop:
+    - NSNavPanelExpandedStateForSaveMode
+    - NSNavPanelExpandedStateForSaveMode2
+    - PMPrintingExpandedStateForPrint
+    - PMPrintingExpandedStateForPrint2
+
+- name: save to disk by default
+  command: defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+- name: auto quit printer app when prints complete
+  command: defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+- name: disable 'are you sure you want to open this app' dialog
+  command: defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+- name: auto restart on freeze
+  command: systemsetup -setrestartfreeze on
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: enable tap to click
+  block:
+    - command: defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+    - command: defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+    - command: defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+- name: increase sound quality for bluetooth headphones
+  command: defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+- name: enable full keyboard access for all controls
+  command: defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+- name: set language and text formats
+  block:
+    - command: defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
+    - command: defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+    - command: defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
+    - command: defaults write NSGlobalDomain AppleMetricUnits -bool false
+  
+- name: require password immediately after sleep/screensaver
+  block:
+    - command: defaults write com.apple.screensaver askForPassword -int 1
+    - command: defaults write com.apple.screensaver askForPasswordDelay -int 0 
+
+- name: update screenshot settings
+  block:
+  - command: defaults write com.apple.screencapture disable-shadow -bool true
+  - command: defaults write com.apple.screencapture type -string "png"
+  - command: defaults write com.apple.screencapture location -string "{{ ansible_env.HOME }}/Desktop"
+
+- name: show hidden files in finder
+  command: defaults write com.apple.finder AppleShowAllFiles -bool true
+
+- name: show all filename extensions
+  command: defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+- name: keep folders on top when sorting by name
+  command: defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+- name: search current folder by default
+  command: defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+- name: disable file extension change warning
+  command: defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+- name: don't write .DS_Store files on network or usb
+  block:
+  - command: defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+  - command: defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+- name: use list view by default
+  command: defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+- name: unhide directories Library
+  command: chflags nohidden ~/Library
+
+- name: unhide directories Library
+  command: chflags nohidden /Volumes
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: setup dock and dashboard
+  block:
+    - name: Enable highlight hover effect for the grid view of a stack (Dock)
+      command: defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
+    - name: Set the icon size of Dock items to 36 pixels
+      command: defaults write com.apple.dock tilesize -int 36
+
+    - name: Change minimize/maximize window effect
+      command: defaults write com.apple.dock mineffect -string "scale"
+
+    - name: Minimize windows into their application’s icon
+      command: defaults write com.apple.dock minimize-to-application -bool true
+
+    - name: Enable spring loading for all Dock items
+      command: defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
+
+    - name: Show indicator lights for open applications in the Dock
+      command: defaults write com.apple.dock show-process-indicators -bool true
+
+    - name: Wipe all (default) app icons from the Dock
+      command: defaults write com.apple.dock persistent-apps -array
+
+    - name: Show only open applications in the Dock
+      command: defaults write com.apple.dock static-only -bool true
+
+    - name: Don’t animate opening applications from the Dock
+      command: defaults write com.apple.dock launchanim -bool false
+
+    - name: Speed up Mission Control animations
+      command: defaults write com.apple.dock expose-animation-duration -float 0.1
+
+    - name: Don’t group windows by application in Mission Control
+      command: defaults write com.apple.dock expose-group-by-app -bool false
+
+    - name: Disable Dashboard
+      command: defaults write com.apple.dashboard mcx-disabled -bool true
+
+    - name: Don’t show Dashboard as a Space
+      command: defaults write com.apple.dock dashboard-in-overlay -bool true
+
+    - name: Don’t automatically rearrange Spaces based on most recent use
+      command: defaults write com.apple.dock mru-spaces -bool false
+
+    - name: Remove the auto-hiding Dock delay
+      command: defaults write com.apple.dock autohide-delay -float 0
+    - name: Remove the animation when hiding/showing the Dock
+      command: defaults write com.apple.dock autohide-time-modifier -float 0
+
+    - name: Automatically hide and show the Dock
+      command: defaults write com.apple.dock autohide -bool true
+
+    - name: Make Dock icons of hidden applications translucent
+      command: defaults write com.apple.dock showhidden -bool true
+
+    - name: Don’t show recent applications in Dock
+      command: defaults write com.apple.dock show-recents -bool false
+
+    - name: Disable the Launchpad gesture (pinch with thumb and three fingers)
+      command: defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
+
+    - name: Reset Launchpad, but keep the desktop wallpaper intact
+      command: find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
+
+
+- name: privacy
+  block:
+    - command: defaults write com.apple.Safari UniversalSearchEnabled -bool false
+    - command: defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+
+- name: setup spotlight
+  command: |
+    defaults write com.apple.spotlight orderedItems -array \
+      '{"enabled" = 1;"name" = "APPLICATIONS";}' \
+      '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+      '{"enabled" = 1;"name" = "DIRECTORIES";}' \
+      '{"enabled" = 1;"name" = "PDF";}' \
+      '{"enabled" = 1;"name" = "FONTS";}' \
+      '{"enabled" = 0;"name" = "DOCUMENTS";}' \
+      '{"enabled" = 0;"name" = "MESSAGES";}' \
+      '{"enabled" = 0;"name" = "CONTACT";}' \
+      '{"enabled" = 0;"name" = "EVENT_TODO";}' \
+      '{"enabled" = 0;"name" = "IMAGES";}' \
+      '{"enabled" = 0;"name" = "BOOKMARKS";}' \
+      '{"enabled" = 0;"name" = "MUSIC";}' \
+      '{"enabled" = 0;"name" = "MOVIES";}' \
+      '{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+      '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+      '{"enabled" = 0;"name" = "SOURCE";}' \
+      '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
+      '{"enabled" = 0;"name" = "MENU_OTHER";}' \
+      '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+      '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
+      '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+      '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+
+- name: rebuild the spotlight index
+  block:
+    - command: killall mds > /dev/null 2>&1
+    - command: mdutil -i on / > /dev/null
+    - command: mdutil -E / > /dev/null
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: kill all apps that are effected
+  command: killall "{{ item }}" &?>/dev/null
+  loop:
+  - Dock
+  - Finder

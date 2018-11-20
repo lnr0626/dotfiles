@@ -11,6 +11,7 @@
       - wget
       - rsync
       - tmux
+      - tree
       - zsh
     state: latest
     update_homebrew: yes

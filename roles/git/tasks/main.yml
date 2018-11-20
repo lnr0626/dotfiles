@@ -4,14 +4,72 @@
       [user]
         name = {{ git_user }}
         email = {{ git_email }}
-
+      [apply]
+        # Detect whitespace errors when applying a patch
+        whitespace = fix
       [push]
         default = simple
-
+        # Make `git push` push relevant annotated tags when pushing branches out.
+        followTags = true
       [core]
         editor = {{ git_editor }}
-
+        excludesfile = ~/.gitignore
+        # Make `git rebase` safer on macOS
+        # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+        trustctime = false
+        # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+        # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+        precomposeunicode = false
+        # Speed up commands involving untracked files such as `git status`.
+        # https://git-scm.com/docs/git-update-index#_untracked_cache
+        untrackedCache = true
+      [color]
+        # Use colors in Git commands that are capable of colored output when
+        # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+        ui = auto
+      [color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+      [color "diff"]
+        meta = yellow bold
+        frag = magenta bold # line info
+        old = red # deletions
+        new = green # additions
+      [color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
+      [diff]
+        # Detect copies as well as renames
+        renames = copies
+      [diff "bin"]
+        # Use `hexdump` to diff binary files
+        textconv = hexdump -v -C
+      [merge]
+        # Include summaries of merged commits in newly created merge commit messages
+        log = true
     dest: ~/.gitconfig
+    mode: '0644'
+
+- name: create OSX ignore file
+  copy:
+    content: |
+      # Compiled Python files
+      *.pyc
+
+      # Folder view configuration files
+      .DS_Store
+      Desktop.ini
+
+      # Thumbnail cache files
+      ._*
+      Thumbs.db
+
+      # Files that might appear on external disks
+      .Spotlight-V100
+      .Trashes
+    dest: ~/.gitignore
     mode: '0644'
 
 - name: Create an ssh key, if it doesn't exist already
