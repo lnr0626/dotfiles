@@ -61,7 +61,7 @@ function install_dependencies() {
         command -v brew &>/dev/null || install_homebrew
         brew install python@2 ansible
     elif echo ${DISTRO} | grep -qi fedora; then
-        su -c "dnf install python ansible sudo"
+        sudo dnf install python ansible
     fi
 }
 

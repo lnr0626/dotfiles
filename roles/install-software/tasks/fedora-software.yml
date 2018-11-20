@@ -5,6 +5,7 @@
       - findutils
       - git
       - jq
+      - libselinux-python
       - neovim
       - python
       - python3
