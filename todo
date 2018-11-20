@@ -1,4 +1,10 @@
-- create bootstrap script for installing ansible (and homebrew on osx)
-- add variables
-- install python3/pip3
 - make fedora inline with osx
+  - install tlp
+  - setup fonts
+  - install gnome tweaks
+    - configure
+
+- install virtualbox (if available)
+- install vscode
+- install jetbrains toolbox
+
