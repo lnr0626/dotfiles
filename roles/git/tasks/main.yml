@@ -72,6 +72,21 @@
     dest: ~/.gitignore
     mode: '0644'
 
+- name: create ssh directory
+  file:
+    state: directory
+    path: ~/.ssh
+
+- name: Enable auto add keys to ssh agent
+  lineinfile:
+    path: ~/.ssh/config
+    create: yes
+    regexp: '^AddKeysToAgent'
+    insertafter: '^#AddKeysToAgent'
+    state: present
+    line: 'AddKeysToAgent yes'
+
+
 - name: Create an ssh key, if it doesn't exist already
   command: ssh-keygen -b 4096 -f ~/.ssh/id_rsa -q -t rsa -C "{{ ansible_user_id }}@{{ ansible_ssh_host }}" -N ""
   args:

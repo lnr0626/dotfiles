@@ -1,3 +1,5 @@
+zstyle :omz:plugins:ssh-agent identities
+
 source ~/antigen.zsh
 
 # Load the oh-my-zsh library
