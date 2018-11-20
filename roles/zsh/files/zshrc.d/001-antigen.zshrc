@@ -1,5 +1,3 @@
-export ANTIGEN_CHECK_FILES=~/etc/zshrc.d/001-antigen.zshrc
-
 source ~/antigen.zsh
 
 # Load the oh-my-zsh library

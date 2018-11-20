@@ -1,0 +1,17 @@
+- include: fedora-software.yml
+  when: ansible_distribution == "Fedora"
+
+- include: osx-software.yml
+  when: ansible_distribution == "MacOSX"
+
+- name: install neovim python bindings
+  pip:
+    executable: '{{ item }}'
+    name: neovim
+    extra_args: --user
+    state: present
+  loop:
+    - pip3
+    - pip2
+
+- include: install-fzf.yml

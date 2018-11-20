@@ -1,0 +1,32 @@
+- name: install zsh+utilities
+  dnf:
+    name:
+      - bat
+      - findutils
+      - git
+      - jq
+      - neovim
+      - python
+      - python3
+      - the_silver_searcher
+      - which
+      - rsync
+      - tmux
+      - zsh
+    state: latest
+  become: yes
+  become_user: root
+  become_method: sudo
+
+- name: set zsh executable fact
+  set_fact:
+    zsh_executable: /usr/bin/zsh
+
+- name: symlink vim to nvim
+  file:
+    state: link
+    src: /usr/bin/nvim
+    dest: /usr/local/bin/vim
+  become: yes
+  become_user: root
+  become_method: sudo

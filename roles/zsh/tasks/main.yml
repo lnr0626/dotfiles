@@ -1,0 +1,38 @@
+- name: create config dirs
+  file:
+    state: directory
+    path: "~/{{ item }}"
+  loop:
+    - etc
+    - bin
+    - .local
+    - .local/bin
+
+- name: synchronize zshrc files
+  synchronize:
+    src: ../files/zshrc.d
+    dest: ~/etc/
+    archive: yes
+    perms: no
+
+- name: copy base rc files
+  copy:
+    src: "{{ item }}"
+    dest: "~/{{ item }}"
+    mode: '0744'
+  loop:
+    - .zshrc
+    - antigen.zsh
+
+- name: create host override file
+  file:
+    path: ~/etc/zshrc.d/999-host.zshrc
+    state: touch
+
+- name: change user shell to zsh
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: "{{ zsh_executable }}"
+  become: yes
+  become_user: root
+  become_method: sudo

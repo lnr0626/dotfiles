@@ -1,0 +1,27 @@
+- name: install software
+  homebrew:
+    name:
+      - ag
+      - bat
+      - jq
+      - gradle
+      - neovim
+      - python3
+      - python@2
+      - wget
+      - rsync
+      - tmux
+      - zsh
+    state: latest
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: set zsh executable fact
+  set_fact:
+    zsh_executable: /usr/local/bin/zsh
+
+- name: symlink vim to nvim
+  file:
+    state: link
+    src: /usr/local/bin/nvim
+    dest: /usr/local/bin/vim

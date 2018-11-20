@@ -1,6 +1,16 @@
 - name: setup gitconfig
   copy:
-    src: .gitconfig
+    content: |
+      [user]
+        name = {{ git_user }}
+        email = {{ git_email }}
+
+      [push]
+        default = simple
+
+      [core]
+        editor = {{ git_editor }}
+
     dest: ~/.gitconfig
     mode: '0644'
 
