@@ -14,4 +14,5 @@ pathmunge ${HOME}/bin
 export PATH
 
 export EDITOR=nvim
+export GOPATH=~/go
 
