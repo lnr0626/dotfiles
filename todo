@@ -9,4 +9,5 @@
 - install jetbrains toolbox
 - add .editorconfig
 - setup tmux vim bindings
-
+- install docker
+  - enable on boot
