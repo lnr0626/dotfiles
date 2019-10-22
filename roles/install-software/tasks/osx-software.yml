@@ -26,3 +26,4 @@
     state: link
     src: /usr/local/bin/nvim
     dest: /usr/local/bin/vim
+

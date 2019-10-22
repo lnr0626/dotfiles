@@ -13,5 +13,6 @@
     update: yes
 
 - name: install nvim plugins
-  command: nvim +PluginClean! +PluginInstall +UpdateRemotePlugins +qall
+  command: nvim +PluginClean! +PluginInstall +UpdateRemotePlugins +PluginUpdate +qall
   when: install_neovim
+
