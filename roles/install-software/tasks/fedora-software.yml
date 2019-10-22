@@ -4,6 +4,7 @@
       - bat
       - findutils
       - git
+      - golang
       - jq
       - libselinux-python
       - neovim

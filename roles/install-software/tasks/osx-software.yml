@@ -5,6 +5,7 @@
       - bat
       - jq
       - gradle
+      - golang
       - neovim
       - python3
       - python@2
