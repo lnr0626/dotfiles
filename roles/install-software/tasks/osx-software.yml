@@ -14,9 +14,13 @@
       - tmux
       - tree
       - zsh
+      - roswell
     state: latest
     update_homebrew: yes
     upgrade_all: yes
+
+- name: install slime through roswell
+  command: ros install slime
 
 - name: set zsh executable fact
   set_fact:

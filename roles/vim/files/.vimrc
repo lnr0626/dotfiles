@@ -20,6 +20,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-rooter'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'dracula/vim'
+Plugin 'kovisoft/slimv'
 
 call vundle#end()
 filetype plugin indent on
@@ -153,7 +154,7 @@ function! Fzf_dev()
 endfunction
 
 let g:lightline = {
-  \   'colorscheme': 'Dracula',
+  \   'colorscheme': 'dracula',
   \   'active': {
   \     'left':[ [ 'mode', 'paste' ],
   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
@@ -173,3 +174,6 @@ set guioptions-=e  " Don't use GUI tabline
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
+let g:slimv_swank_cmd = "!ros -e '(ql:quickload :swank) (swank:create-server)' wait &"
+let g:slimv_lisp = 'ros run'
+let g:slimv_impl = 'sbcl'
