@@ -27,3 +27,7 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+function swank() {
+  ros -e '(ql:quickload :swank) (swank:create-server)' wait 1>/tmp/swank.out 2>/tmp/swank.err &
+}
