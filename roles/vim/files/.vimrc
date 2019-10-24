@@ -174,6 +174,6 @@ set guioptions-=e  " Don't use GUI tabline
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-let g:slimv_swank_cmd = "!ros -e '(ql:quickload :swank) (swank:create-server)' wait &"
+let g:slimv_swank_cmd = "!swank &"
 let g:slimv_lisp = 'ros run'
 let g:slimv_impl = 'sbcl'
