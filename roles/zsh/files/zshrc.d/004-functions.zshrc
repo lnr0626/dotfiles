@@ -29,5 +29,5 @@ function tre() {
 }
 
 function swank() {
-  ros -e '(ql:quickload :swank) (swank:create-server)' wait 1>/tmp/swank.out 2>/tmp/swank.err &
+  bash -c "ros -e '(ql:quickload :swank) (swank:create-server :dont-close t)' wait 1>/tmp/swank.out 2>/tmp/swank.err &"
 }
