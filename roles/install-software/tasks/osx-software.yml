@@ -8,7 +8,6 @@
       - golang
       - neovim
       - python3
-      - python@2
       - wget
       - rsync
       - tmux
