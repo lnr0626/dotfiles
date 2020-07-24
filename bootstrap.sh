@@ -59,7 +59,7 @@ function install_dependencies() {
     DISTRO=$(distro)
     if echo ${DISTRO} | grep -qi darwin; then
         command -v brew &>/dev/null || install_homebrew
-        brew install python@2 ansible
+        brew install ansible
     elif echo ${DISTRO} | grep -qi fedora; then
         sudo dnf install python ansible
     fi
