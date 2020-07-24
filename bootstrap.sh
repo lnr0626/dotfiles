@@ -41,7 +41,7 @@ function prompt() {
 }
 
 function install_homebrew() {
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install > ./.brew-install
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh > ./.brew-install
     less ./.brew-install
     REPLY=$(confirm "Do you want to run the script? [y/N]")
     echo # (optional) move to a new line
