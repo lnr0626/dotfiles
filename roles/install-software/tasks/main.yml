@@ -12,6 +12,5 @@
     state: present
   loop:
     - pip3
-    - pip2
 
 - include: install-fzf.yml
