@@ -2,6 +2,7 @@
   homebrew:
     name:
       - ag
+      - asdf
       - bat
       - jq
       - gradle

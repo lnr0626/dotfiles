@@ -28,6 +28,8 @@ if command -v aws > /dev/null; then
   antigen bundle aws
 fi
 
+antigen bundle kiurchv/asdf.plugin.zsh
+
 antigen bundle ssh-agent
 antigen bundle vi-mode
 
